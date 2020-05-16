@@ -122,7 +122,7 @@ return(
                 value={formState.instructions} 
                 onChange={changeHandler}/>
         </label>
-        <button>Add to Order</button>
+        <button type='submit'>Add to Order</button>
     </form>
 )
 }
