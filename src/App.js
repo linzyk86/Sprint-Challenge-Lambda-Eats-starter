@@ -8,7 +8,7 @@ const App = () => {
     <>
       <h1>Lambda Eats</h1>
       <Link to ='/'>Home</Link>
-      <Link to ='/Pizza'>Order Pizza</Link>
+      <button><Link to ='/Pizza'>Order Pizza</Link></button>
       <Route exact path ='/' component = {Home}/>
       <Route exact path ='/Pizza' component = {Pizza}/>
 

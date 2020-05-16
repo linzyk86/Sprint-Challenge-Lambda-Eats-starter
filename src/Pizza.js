@@ -4,8 +4,12 @@ import axios from 'axios';
 
 
 const formSchema = yup.object().shape({
-     name: yup.string().required("Name is required")
-
+     name: yup.string().required("Name is required"),
+     size: yup.string(),
+    cheese:yup.boolean(),
+    pepperoni: yup.boolean(),
+    veggie: yup.boolean(),
+    instructions: yup.string(), 
     });
 
 
@@ -38,7 +42,12 @@ const validate =e=>{
             setErrorState({
                 ...errorState,[e.target.name]:""
             });
-        });
+        })
+        .catch(err=>{
+            setErrorState({
+                ...errorState,[e.target.name]:err.errors[0]
+            })
+        })
 };
 
 const changeHandler = e =>{
@@ -66,6 +75,7 @@ return(
                 id='name' 
                 value={formState.name} 
                 onChange={changeHandler}/>
+                {errorState.name.length >0?(<p className='error'>{errorState.name}</p>):null}
         </label>
 
         <label htmlFor='size'>
@@ -79,6 +89,7 @@ return(
             <option value = 'large'>Large</option>
             <option value = 'XL'>XL</option>
             </select>
+            {errorState.size.length>0?(<p className = "error">{errorState.size}</p>): null}
         </label>
 
         <label htmlFor='pepperoni'>Pepperoni
@@ -101,6 +112,15 @@ return(
             name='veggie'
             checked={formState.veggie}
             onChange={changeHandler}/>
+        </label>
+        <label htmlFor = 'name'>
+            Special Instructions 
+            <input 
+                type='textarea' 
+                name='instructions' 
+                id='instructions' 
+                value={formState.instructions} 
+                onChange={changeHandler}/>
         </label>
         <button>Add to Order</button>
     </form>
